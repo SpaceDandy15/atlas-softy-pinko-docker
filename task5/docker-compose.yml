@@ -1,0 +1,22 @@
+services:
+  back-end:
+    build:
+      context: .
+      dockerfile: Dockerfile-backend
+    ports:
+      - "5252:5252"  # Map the port of the container to the host
+    networks:
+      - app-network  # Use a custom network
+
+  front-end:
+    build:
+      context: .
+      dockerfile: Dockerfile-frontend
+    ports:
+      - "80:80"  # Map the port of the container to the host
+    networks:
+      - app-network  # Use a custom network
+
+networks:
+  app-network:  # Define a custom network
+    driver: bridge
